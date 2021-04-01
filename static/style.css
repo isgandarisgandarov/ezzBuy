@@ -12,3 +12,9 @@
     margin-bottom: 5px;
     padding: 5px;
 }
+
+.link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}

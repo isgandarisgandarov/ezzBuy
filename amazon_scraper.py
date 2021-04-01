@@ -1,11 +1,13 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 
-product = 'iphone X'
+product = 'playstation 4'
 url = f'https://amazon.com/s?k={product}'
 
-driver = webdriver.Chrome('C:\\Webdriver\\bin\\chromedriver.exe')
+chromeOptions = Options()
+chromeOptions.headless = True
+driver = webdriver.Chrome(executable_path='C:\\Webdriver\\bin\\chromedriver.exe', options=chromeOptions)
 driver.get(url)
 
 soup = BeautifulSoup(driver.page_source, 'lxml')
@@ -14,7 +16,9 @@ results = soup.find_all('div', {'data-component-type': 's-search-result'})
 
 def scrape_info(item):
     try:
-        title = item.h2.a.text.strip()
+        atag = item.h2.a
+        title = atag.text.strip()
+        link = 'https://amazon.com' + atag.get('href')
     except AttributeError:
         title = "No title provided"
     try:
@@ -29,7 +33,8 @@ def scrape_info(item):
 
     result = {'title': title,
               'price': price,
-              'rating': rating}
+              'rating': rating,
+              'link': link}
     return result
 
 

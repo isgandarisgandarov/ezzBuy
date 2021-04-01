@@ -34,7 +34,7 @@
     <div class="container form">
         {% for data in products %}
             <div class="search">
-                <h4>{{ data.get('title') }}</h4>
+                <h4><a class="link" target='_blank' href={{ data.get('link') }}>{{ data.get('title') }}</a></h4>
                 <h5 class="float-left font-weight-bold price-title">Price: {{ data.get('price') }}</h5>
                 <h5 class="float-right rating-title">Rating: {{ data.get('rating') }}</h5>
             </div>
