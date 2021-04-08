@@ -26,8 +26,9 @@ def scraper(product):
         try:
             price_parent = item.find('span', 'a-price')
             price = price_parent.find('span', 'a-offscreen').text.strip()
+            price = float(price[1:])
         except AttributeError:
-            price = "No price provided"
+            price = 0
         try:
             rating = item.i.text
         except AttributeError:
@@ -50,3 +51,19 @@ def scraper(product):
     driver.quit()
     return products
 
+
+def sortByPrice(products, order=False):
+    return sorted(products, key=lambda k: k['price'], reverse=order)
+
+
+def minMax(products, min_price, max_price):
+    def condition(dic, min_price, max_price):
+        return min_price < dic['price'] < max_price
+
+    filtered = [d for d in products if condition(d, min_price, max_price)]
+    return filtered
+
+
+# items = scraper('playstation 5')
+#
+# print(minMax(items, 69, 100))

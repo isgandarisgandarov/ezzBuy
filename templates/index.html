@@ -26,7 +26,20 @@
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Product name</label>
             <input type="text" class="form-control" name="search" placeholder="e.g Iphone 11">
+
+            <input type="text" class="form-control dropdown" name="min" placeholder="min price">
+            <input type="text" class="form-control dropdown" name="max" placeholder="max price">
+
+
+            <label for="cars">Sort by price:</label>
+            <select name="sort" id="sort" class="dropdown">
+              <option name="none" value="none">None</option>
+              <option name="ascending" value="ascending">Ascending</option>
+              <option name="descending" value="descending">Descending</option>
+            </select>
+
           </div>
+
           <button type="submit" class="btn btn-primary">Search</button>
         </form>
     </div>
@@ -35,7 +48,7 @@
         {% for data in products %}
             <div class="search">
                 <h4><a class="link" target='_blank' href={{ data.get('link') }}>{{ data.get('title') }}</a></h4>
-                <h5 class="float-left font-weight-bold price-title">Price: {{ data.get('price') }}</h5>
+                <h5 class="float-left font-weight-bold price-title">Price: ${{ data.get('price') }}</h5>
                 <h5 class="float-right rating-title">Rating: {{ data.get('rating') }}</h5>
                 <h6>Source: {{ data.get('source') }}</h6>
             </div>
