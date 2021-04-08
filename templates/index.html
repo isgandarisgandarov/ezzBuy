@@ -8,24 +8,24 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
       <div class="container-fluid">
-           <a class="navbar-brand text" href="#">ezzBuy</a>
+           <a class="navbar-brand text" href="{{ url_for('home') }}">ezzBuy</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-link active text" aria-current="page" href="#">Home</a>
+            <a class="nav-link active text" aria-current="page" href="{{ url_for('home') }}">Home</a>
             <a class="nav-link text" href="#">About</a>
           </div>
         </div>
       </div>
     </nav>
-    <div class="container form">
-        <form>
+    <div class="container form" >
+        <form method="post" action="#">
           <legend>Type something to search</legend>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Product name</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="e.g Iphone 11">
+            <input type="text" class="form-control" name="search" placeholder="e.g Iphone 11">
           </div>
           <button type="submit" class="btn btn-primary">Search</button>
         </form>
@@ -37,9 +37,10 @@
                 <h4><a class="link" target='_blank' href={{ data.get('link') }}>{{ data.get('title') }}</a></h4>
                 <h5 class="float-left font-weight-bold price-title">Price: {{ data.get('price') }}</h5>
                 <h5 class="float-right rating-title">Rating: {{ data.get('rating') }}</h5>
+                <h6>Source: {{ data.get('source') }}</h6>
             </div>
         {% else %}
-            <div>No such item</div>
+            <div></div>
         {% endfor %}
     </div>
 
