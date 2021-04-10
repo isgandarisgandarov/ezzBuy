@@ -13,8 +13,14 @@ def home():
         sort = request.form['sort']
         min_price = request.form['min']
         max_price = request.form['max']
-        amazon_products = amazonScraper(item)
-        tapaz_products = tapazScraper(item)
+        tapaz = request.form.getlist('tapaz')
+        amazon = request.form.getlist('amazon')
+        amazon_products = []
+        tapaz_products = []
+        if amazon == ['on']:
+            amazon_products = amazonScraper(item)
+        if tapaz == ['on']:
+            tapaz_products = tapazScraper(item)
         if min_price and max_price:
             amazon_products = minMax(amazon_products, float(min_price), float(max_price))
             tapaz_products = minMax(tapaz_products, float(min_price), float(max_price))

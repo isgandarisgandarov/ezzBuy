@@ -27,20 +27,32 @@
             <label for="exampleInputEmail1" class="form-label">Product name</label>
             <input type="text" class="form-control" name="search" placeholder="e.g Iphone 11">
 
-            <input type="text" class="form-control dropdown" name="min" placeholder="min price">
-            <input type="text" class="form-control dropdown" name="max" placeholder="max price">
-
-
-            <label for="cars">Sort by price:</label>
-            <select name="sort" id="sort" class="dropdown">
-              <option name="none" value="none">None</option>
-              <option name="ascending" value="ascending">Ascending</option>
-              <option name="descending" value="descending">Descending</option>
-            </select>
+            <div style="display: flex; justify-content: flex-start">
+                <input style="width: 20%; margin-right: 30px" type="text" class="form-control dropdown" name="min" placeholder="min price">
+                <input style="width: 20%" type="text" class="form-control dropdown" name="max" placeholder="max price">
+            </div>
+             <label for="cars">Sort by price:</label>
+                <select name="sort" id="sort" class="dropdown">
+                  <option name="none" value="none">None</option>
+                  <option name="ascending" value="ascending">Ascending</option>
+                  <option name="descending" value="descending">Descending</option>
+                </select>
 
           </div>
 
-          <button type="submit" class="btn btn-primary">Search</button>
+            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="amazon">
+                <label class="btn btn-outline-primary" for="btncheck1">Amazon.com</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="aliexpress">
+                <label class="btn btn-outline-primary" for="btncheck2">Aliexpress.ru</label>
+
+                <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="tapaz">
+                <label class="btn btn-outline-primary" for="btncheck3">Tap.az</label>
+            </div>
+            <div>
+                <button style="margin-top: 15px" type="submit" class="btn btn-primary">Search</button>
+            </div>
         </form>
     </div>
 
