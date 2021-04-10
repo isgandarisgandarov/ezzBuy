@@ -15,7 +15,6 @@ def tapazScraper(product):
     soup = BeautifulSoup(driver.page_source, 'lxml')
     results = soup.find_all('div', {'class': "products-i rounded"})
 
-
     def scrapeInfo(item):
         try:
             link = 'https://tap.az' + item.a.get('href')[:-9]
