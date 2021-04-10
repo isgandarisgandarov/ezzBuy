@@ -3,7 +3,7 @@ from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 
 
-def scraper(product):
+def amazonScraper(product):
     if product == '':
         return []
     url = f'https://amazon.com/s?k={product}'
@@ -16,7 +16,7 @@ def scraper(product):
     soup = BeautifulSoup(driver.page_source, 'lxml')
     results = soup.find_all('div', {'data-component-type': 's-search-result'})
 
-    def scrape_info(item):
+    def scrapeInfo(item):
         try:
             atag = item.h2.a
             title = atag.text.strip()
@@ -41,10 +41,9 @@ def scraper(product):
                   'source': 'amazon.com'}
         return result
 
-
     products = []
     for item in results:
-        record = scrape_info(item)
+        record = scrapeInfo(item)
         if record:
             products.append(record)
 
@@ -64,6 +63,3 @@ def minMax(products, min_price, max_price):
     return filtered
 
 
-# items = scraper('playstation 5')
-#
-# print(minMax(items, 69, 100))

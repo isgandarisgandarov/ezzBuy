@@ -1,5 +1,6 @@
 from flask import Flask, render_template, url_for, request
-from amazon_scraper import scraper, sortByPrice, minMax
+from amazon_scraper import amazonScraper, sortByPrice, minMax
+from tapaz_scraper import tapazScraper
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '34806b7e050652f3fc730b3fbc22d0ee'
@@ -12,17 +13,22 @@ def home():
         sort = request.form['sort']
         min_price = request.form['min']
         max_price = request.form['max']
-        products = scraper(item)
+        amazon_products = amazonScraper(item)
+        tapaz_products = tapazScraper(item)
         if min_price and max_price:
-            products = minMax(products, float(min_price), float(max_price))
+            amazon_products = minMax(amazon_products, float(min_price), float(max_price))
+            tapaz_products = minMax(tapaz_products, float(min_price), float(max_price))
         if sort == 'ascending':
-            products = sortByPrice(products)
+            amazon_products = sortByPrice(amazon_products)
+            tapaz_products = sortByPrice(tapaz_products)
         elif sort == 'descending':
-            products = sortByPrice(products, True)
-        return render_template('index.html', products=products)
+            amazon_products = sortByPrice(amazon_products, True)
+            tapaz_products = sortByPrice(tapaz_products, True)
+        return render_template('index.html', amazon_products=amazon_products, tapaz_products=tapaz_products)
     else:
-        products = []
-        return render_template('index.html', products=products)
+        amazon_products = []
+        tapaz_products = []
+        return render_template('index.html', amazon_products=amazon_products, tapaz_products=tapaz_products)
 
 
 if __name__ == '__main__':
