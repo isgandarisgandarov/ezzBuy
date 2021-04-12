@@ -30,7 +30,14 @@ def aliexpressScraper(product):
             title = 'No title provided'
         try:
             price = item.find('span', 'price-current').text.strip()
-            price = price.encode('ascii', 'replace')
+            price = str(price.encode('ascii', 'replace'))
+            price = price.replace(',', '.')
+            price = price.replace('?', '')
+            price = price[2:]
+            price = price[:-3]
+            if " " in price:
+                price = price.split(' ')[0]
+            price = float(price)
         except AttributeError:
             price = 0
         try:
@@ -51,8 +58,13 @@ def aliexpressScraper(product):
         if record:
             products.append(record)
 
-    driver.quit()
+    # driver.quit()
     return products
 
 
-# print(aliexpressScraper('keyboard'))
+print(aliexpressScraper('keyboard'))
+
+# url = 'https://aliexpress.ru'
+# driver.find_element_by_css_selector('.styles_searchInputsWrap__1gYln input').send_keys(product)
+# driver.find_element_by_css_selector('.styles_searchButton__1c9Lj').click()
+# sleep(5)

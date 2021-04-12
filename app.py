@@ -1,6 +1,5 @@
 from flask import Flask, render_template, url_for, request
-from amazon_scraper import amazonScraper, sortByPrice, minMax
-from tapaz_scraper import tapazScraper
+from displayer import display
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '34806b7e050652f3fc730b3fbc22d0ee'
@@ -8,6 +7,7 @@ app.config['SECRET_KEY'] = '34806b7e050652f3fc730b3fbc22d0ee'
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
+
     if request.method == 'POST':
         item = request.form['search']
         sort = request.form['sort']
@@ -15,21 +15,9 @@ def home():
         max_price = request.form['max']
         tapaz = request.form.getlist('tapaz')
         amazon = request.form.getlist('amazon')
-        amazon_products = []
-        tapaz_products = []
-        if amazon == ['on']:
-            amazon_products = amazonScraper(item)
-        if tapaz == ['on']:
-            tapaz_products = tapazScraper(item)
-        if min_price and max_price:
-            amazon_products = minMax(amazon_products, float(min_price), float(max_price))
-            tapaz_products = minMax(tapaz_products, float(min_price), float(max_price))
-        if sort == 'ascending':
-            amazon_products = sortByPrice(amazon_products)
-            tapaz_products = sortByPrice(tapaz_products)
-        elif sort == 'descending':
-            amazon_products = sortByPrice(amazon_products, True)
-            tapaz_products = sortByPrice(tapaz_products, True)
+        aliexpress = request.form.getlist('aliexpress')
+        amazon_products, tapaz_products = display(item, sort, amazon, tapaz, aliexpress,  min_price, max_price)
+
         return render_template('index.html', amazon_products=amazon_products, tapaz_products=tapaz_products)
     else:
         amazon_products = []
