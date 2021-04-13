@@ -31,13 +31,18 @@
                 <input style="width: 20%; margin-right: 30px" type="text" class="form-control dropdown" name="min" placeholder="min price">
                 <input style="width: 20%" type="text" class="form-control dropdown" name="max" placeholder="max price">
             </div>
-             <label for="cars">Sort by price:</label>
+             <label for="sort">Sort by price:</label>
                 <select name="sort" id="sort" class="dropdown">
                   <option name="none" value="none">None</option>
                   <option name="ascending" value="ascending">Ascending</option>
                   <option name="descending" value="descending">Descending</option>
                 </select>
 
+            <label for="currency">Currency:</label>
+                <select name="currency" id="currency" class="dropdown">
+                  <option name="usd" value="usd">USD</option>
+                  <option name="azn" value="azn">AZN</option>
+                </select>
           </div>
 
             <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
@@ -62,7 +67,7 @@
             {% for data in amazon_products %}
                 <div class="search">
                     <h4><a class="link" target='_blank' href={{ data.get('link') }}>{{ data.get('title') }}</a></h4>
-                    <h5 class="float-left font-weight-bold price-title">Price: ${{ data.get('price') }}</h5>
+                    <h5 class="float-left font-weight-bold price-title">Price: {{ data.get('price') }}</h5>
                     <h5 class="float-right rating-title">Rating: {{ data.get('rating') }}</h5>
                     <h6>Source: {{ data.get('source') }}</h6>
                 </div>
@@ -73,6 +78,16 @@
 
         <div class="container form flex-child">
             <h3 class="text-center">Aliexpress.ru</h3>
+            {% for data in aliexpress_products %}
+                <div class="search">
+                    <h4><a class="link" target='_blank' href={{ data.get('link') }}>{{ data.get('title') }}</a></h4>
+                    <h5 class="float-left font-weight-bold price-title">Price: {{ data.get('price') }}</h5>
+                    <h5 class="float-right rating-title">Rating: {{ data.get('rating') }}</h5>
+                    <h6>Source: {{ data.get('source') }}</h6>
+                </div>
+            {% else %}
+                <div></div>
+            {% endfor %}
         </div>
 
         <div class="container form flex-child">
@@ -80,7 +95,7 @@
             {% for data in tapaz_products %}
                 <div class="search">
                     <h4><a class="link" target='_blank' href={{ data.get('link') }}>{{ data.get('title') }}</a></h4>
-                    <h5 class="float-left font-weight-bold price-title">Price: {{ data.get('price') }} AZN</h5>
+                    <h5 class="float-left font-weight-bold price-title">Price: {{ data.get('price') }}</h5>
                     <h6>Source: {{ data.get('source') }}</h6>
                 </div>
             {% else %}

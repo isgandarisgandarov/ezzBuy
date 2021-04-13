@@ -13,7 +13,7 @@ def tapazScraper(product):
     driver = webdriver.Chrome(executable_path='C:\\Webdriver\\bin\\chromedriver.exe', options=chromeOptions)
     driver.get(url)
     soup = BeautifulSoup(driver.page_source, 'lxml')
-    results = soup.find_all('div', {'class': "products-i rounded"})
+    results = soup.find_all('div', {'class': "products-i rounded"}) + soup.find_all('div', {'class': "products-i rounded bumped products-shop"})
 
     def scrapeInfo(item):
         try:
@@ -22,7 +22,7 @@ def tapazScraper(product):
             link = ""
         try:
             price = item.find('div', 'products-price').text.strip()
-            price = float(price[:-3].replace(',', ''))
+            price = float(price[:-3].replace(',', '').replace(' ', ''))
         except AttributeError:
             price = 0
         try:

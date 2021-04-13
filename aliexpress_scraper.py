@@ -58,11 +58,8 @@ def aliexpressScraper(product):
         if record:
             products.append(record)
 
-    # driver.quit()
+    driver.quit()
     return products
-
-
-print(aliexpressScraper('keyboard'))
 
 # url = 'https://aliexpress.ru'
 # driver.find_element_by_css_selector('.styles_searchInputsWrap__1gYln input').send_keys(product)
