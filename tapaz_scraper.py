@@ -13,7 +13,7 @@ def tapazScraper(product):
     driver = webdriver.Chrome(executable_path='C:\\Webdriver\\bin\\chromedriver.exe', options=chromeOptions)
     driver.get(url)
     soup = BeautifulSoup(driver.page_source, 'lxml')
-    results = soup.find_all('div', {'class': "products-i rounded"}) + soup.find_all('div', {'class': "products-i rounded bumped products-shop"})
+    results = soup.find_all('div', {'class': "products-i rounded"}) + soup.find_all('div', {'class': "products-i rounded bumped products-shop"}) + soup.find_all('div', {'class': "products-i rounded bumped"})
 
     def scrapeInfo(item):
         try:

@@ -53,17 +53,17 @@ def display(item, sort, currency, amazon, tapaz, aliexpress, min_price=0, max_pr
     if currency == 'usd':
         for dic in tapaz_products:
             dic['price'] *= 0.59
-            round(dic['price'], 2)
+            dic['price'] = round(dic['price'], 2)
         for dic in aliexpress_products:
             dic['price'] *= 0.013
-            round(dic['price'], 2)
+            dic['price'] = round(dic['price'], 2)
     elif currency == 'azn':
         for dic in amazon_products:
             dic['price'] *= 1.7
-            round(dic['price'], 2)
+            dic['price'] = round(dic['price'], 2)
         for dic in aliexpress_products:
             dic['price'] *= 0.022
-            round(dic['price'], 2)
+            dic['price'] = round(dic['price'], 2)
 
     if min_price and max_price:
         amazon_products = minMax(amazon_products, float(min_price), float(max_price))
