@@ -1,13 +1,10 @@
-from flask import Flask, render_template, url_for, request
-from displayer import display
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = '34806b7e050652f3fc730b3fbc22d0ee'
+from flask import render_template, url_for, request
+from ezzBuy.displayer import display
+from ezzBuy import app
 
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-
     if request.method == 'POST':
         item = request.form['search']
         sort = request.form['sort']
@@ -25,7 +22,3 @@ def home():
         tapaz_products = []
         aliexpress_products = []
         return render_template('index.html', amazon_products=amazon_products, tapaz_products=tapaz_products, aliexpress_products=aliexpress_products)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
