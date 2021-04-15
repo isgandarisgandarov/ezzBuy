@@ -26,7 +26,7 @@ def amazonScraper(product):
         try:
             price_parent = item.find('span', 'a-price')
             price = price_parent.find('span', 'a-offscreen').text.strip()
-            price = float(price[1:])
+            price = float(price[1:].replace(',', ''))
         except AttributeError:
             price = 0
         try:
