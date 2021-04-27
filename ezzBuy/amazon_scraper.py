@@ -44,7 +44,7 @@ def amazonScraper(product):
     products = []
     for item in results:
         record = scrapeInfo(item)
-        if record:
+        if record['price'] != 0:
             products.append(record)
 
     driver.quit()

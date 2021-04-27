@@ -37,10 +37,15 @@ def tapazScraper(product):
         return result
 
     products = []
+    counter = 0
     for item in results:
-        record = scrapeInfo(item)
-        if record:
-            products.append(record)
+        if counter < 20:
+            record = scrapeInfo(item)
+            if record:
+                products.append(record)
+            counter += 1
+        else:
+            break
 
     driver.quit()
     return products

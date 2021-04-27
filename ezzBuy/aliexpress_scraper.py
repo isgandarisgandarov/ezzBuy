@@ -61,6 +61,7 @@ def aliexpressScraper(product):
     driver.quit()
     return products
 
+
 # url = 'https://aliexpress.ru'
 # driver.find_element_by_css_selector('.styles_searchInputsWrap__1gYln input').send_keys(product)
 # driver.find_element_by_css_selector('.styles_searchButton__1c9Lj').click()

@@ -75,4 +75,3 @@ def display(item, sort, currency, amazon, tapaz, aliexpress, min_price=0, max_pr
         amazon_products = sortByPrice(amazon_products, True)
         tapaz_products = sortByPrice(tapaz_products, True)
     return amazon_products, tapaz_products, aliexpress_products
-
