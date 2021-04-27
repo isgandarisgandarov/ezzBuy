@@ -47,7 +47,3 @@ class TapazScraper(Scraper):
                 products.append(record)
             counter += 1
         return products
-
-
-tapaz = TapazScraper()
-print(tapaz.scrape('keyboard'))
