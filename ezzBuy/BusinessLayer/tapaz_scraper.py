@@ -2,7 +2,7 @@ from ezzBuy.BusinessLayer.scraper import Scraper
 from ezzBuy.BusinessLayer.driver import Driver
 from bs4 import BeautifulSoup
 
-tapaz_driver = Driver(False)
+tapaz_driver = Driver(True)
 
 
 class TapazScraper(Scraper):

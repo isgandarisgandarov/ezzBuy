@@ -7,16 +7,6 @@ class TapazDisplayer(Displayer):
     def __init__(self, tapaz_scraper: Scraper):
         self.tapaz_scraper = tapaz_scraper
 
-    def sort_by_price(self, products, sort=False):
-        return sorted(products, key=lambda k: k['price'], reverse=sort)
-
-    def min_max_filter(self, products, min_price=0.0, max_price=100000.0):
-        def condition(dic, min_price, max_price):
-            return min_price < dic['price'] < max_price
-
-        filtered = [d for d in products if condition(d, min_price, max_price)]
-        return filtered
-
     def currency_converter(self, products, currency):
         if currency == 'usd':
             for dic in products:
@@ -41,3 +31,4 @@ tapaz_displayer = TapazDisplayer(tapaz)
 print(tapaz_displayer.display('keyboard', 'ascending', 'azn', 2, 1000))
 print()
 print(tapaz_displayer.display('monitor', 'ascending', 'azn', 2, 1000))
+
