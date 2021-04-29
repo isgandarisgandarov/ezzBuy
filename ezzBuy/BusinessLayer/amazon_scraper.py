@@ -2,7 +2,7 @@ from ezzBuy.BusinessLayer.scraper import Scraper
 from ezzBuy.BusinessLayer.driver import Driver
 from bs4 import BeautifulSoup
 
-amazon_driver = Driver(True)
+amazon_driver = Driver(False)
 
 
 class AmazonScraper(Scraper):

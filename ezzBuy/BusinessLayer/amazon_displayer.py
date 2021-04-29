@@ -1,11 +1,11 @@
 from ezzBuy.BusinessLayer.displayer import Displayer
 from ezzBuy.BusinessLayer.scraper import Scraper
-from ezzBuy.BusinessLayer.tapaz_scraper import TapazScraper
+from ezzBuy.BusinessLayer.amazon_scraper import AmazonScraper
 
 
-class TapazDisplayer(Displayer):
-    def __init__(self, tapaz_scraper: Scraper):
-        self.tapaz_scraper = tapaz_scraper
+class AmazonDisplayer(Displayer):
+    def __init__(self, amazon_scraper: Scraper):
+        self.amazon_scraper = amazon_scraper
 
     def sort_by_price(self, products, sort=False):
         return sorted(products, key=lambda k: k['price'], reverse=sort)
@@ -18,13 +18,13 @@ class TapazDisplayer(Displayer):
         return filtered
 
     def currency_converter(self, products, currency):
-        if currency == 'usd':
+        if currency == 'azn':
             for dic in products:
-                dic['price'] *= 0.59
+                dic['price'] *= 1.7
                 dic['price'] = round(dic['price'], 2)
 
     def display(self, product, sort, currency, min_price=0.0, max_price=100000.0):
-        products = self.tapaz_scraper.scrape(product)
+        products = self.amazon_scraper.scrape(product)
         self.currency_converter(products, currency)
         if min_price and max_price:
             products = self.min_max_filter(products, float(min_price), float(max_price))
@@ -35,9 +35,10 @@ class TapazDisplayer(Displayer):
         return products
 
 
-tapaz = TapazScraper()
-tapaz_displayer = TapazDisplayer(tapaz)
+amazon = AmazonScraper()
+amazon_displayer = AmazonDisplayer(amazon)
 
-print(tapaz_displayer.display('keyboard', 'ascending', 'azn', 2, 1000))
+print(amazon_displayer.display('keyboard', 'ascending', 'azn', 20.5, 1000.8))
 print()
-print(tapaz_displayer.display('monitor', 'ascending', 'azn', 2, 1000))
+print(amazon_displayer.display('monitor', 'ascending', 'azn', 20.5, 1000.8))
+
