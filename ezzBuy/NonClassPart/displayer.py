@@ -3,9 +3,9 @@ try:
     import queue
 except ImportError:
     import Queue as queue
-from ezzBuy.amazon_scraper import amazonScraper, sortByPrice, minMax
-from ezzBuy.tapaz_scraper import tapazScraper
-from ezzBuy.aliexpress_scraper import aliexpressScraper
+from ezzBuy.NonClassPart.amazon_scraper import amazonScraper, sortByPrice, minMax
+from ezzBuy.NonClassPart.tapaz_scraper import tapazScraper
+from ezzBuy.NonClassPart.aliexpress_scraper import aliexpressScraper
 
 
 def wrapper(func, arg, queue):

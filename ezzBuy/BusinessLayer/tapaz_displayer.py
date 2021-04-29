@@ -1,6 +1,5 @@
 from ezzBuy.BusinessLayer.displayer import Displayer
 from ezzBuy.BusinessLayer.scraper import Scraper
-from ezzBuy.BusinessLayer.tapaz_scraper import TapazScraper
 
 
 class TapazDisplayer(Displayer):
@@ -24,11 +23,4 @@ class TapazDisplayer(Displayer):
             products = self.sort_by_price(products, True)
         return products
 
-
-tapaz = TapazScraper()
-tapaz_displayer = TapazDisplayer(tapaz)
-
-print(tapaz_displayer.display('keyboard', 'ascending', 'azn', 2, 1000))
-print()
-print(tapaz_displayer.display('monitor', 'ascending', 'azn', 2, 1000))
 

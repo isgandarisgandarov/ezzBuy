@@ -1,6 +1,5 @@
 from ezzBuy.BusinessLayer.displayer import Displayer
 from ezzBuy.BusinessLayer.scraper import Scraper
-from ezzBuy.BusinessLayer.amazon_scraper import AmazonScraper
 
 
 class AmazonDisplayer(Displayer):
@@ -23,10 +22,4 @@ class AmazonDisplayer(Displayer):
         elif sort == 'descending':
             products = self.sort_by_price(products, True)
         return products
-
-
-amazon = AmazonScraper()
-amazon_displayer = AmazonDisplayer(amazon)
-
-print(amazon_displayer.display('keyboard', 'ascending', 'azn', 20.5, 1000.8))
 
