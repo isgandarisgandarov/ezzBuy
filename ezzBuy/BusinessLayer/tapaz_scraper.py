@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup
 
 tapaz_driver = Driver(True)
 
-
 class TapazScraper(Scraper):
     def __init__(self):
         self.driver = tapaz_driver.get_driver()

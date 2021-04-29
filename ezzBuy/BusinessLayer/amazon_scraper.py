@@ -37,10 +37,10 @@ class AmazonScraper(Scraper):
             rating = "No rating provided"
 
         return {'title': title,
-                  'price': price,
-                  'rating': rating,
-                  'link': link,
-                  'source': 'amazon.com'}
+                'price': price,
+                'rating': rating,
+                'link': link,
+                'source': 'amazon.com'}
 
     def scrape(self, product):
         products = []
@@ -62,4 +62,3 @@ class AmazonScraper(Scraper):
             if len(products) > 20:
                 break
         return products
-
