@@ -6,6 +6,10 @@ class Displayer(metaclass=abc.ABCMeta):
     def currency_converter(self, products, currency):
         pass
 
+    @abc.abstractmethod
+    def display(self, product, sort, currency, min_price, max_price):
+        pass
+
     @staticmethod
     def sort_by_price(products, sort=False):
         return sorted(products, key=lambda k: k['price'], reverse=sort)

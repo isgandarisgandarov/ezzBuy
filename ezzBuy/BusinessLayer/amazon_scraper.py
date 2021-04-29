@@ -55,10 +55,10 @@ class AmazonScraper(Scraper):
                 record = self.scrapeItem(item)
                 if record['price'] == 0:
                     continue
-                elif len(products) > 20:
+                elif len(products) > 10:
                     break
                 else:
                     products.append(record)
-            if len(products) > 20:
+            if len(products) > 10:
                 break
         return products
