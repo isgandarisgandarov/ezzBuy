@@ -4,7 +4,7 @@
 ### 1) Cloning the repository:
 `git clone https://github.com/isgandarisgandarov/ezzBuy.git`
 
-### 2) Creating virtual environment and installed required packages:
+### 2) Creating virtual environment and installing required packages:
 
 `python3 -m venv env`  
 `env/Scripts/activate`  
