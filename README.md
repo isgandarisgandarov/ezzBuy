@@ -9,7 +9,7 @@
 `python3 -m venv env`  
 `env/Scripts/activate`  
 `pip install -r requirements.txt`  
-`python3 application.py`  
+`python3 run.py`  
 `deactivate`   
 
 ### P.S: You should have Chrome downloaded in order to use this engine
