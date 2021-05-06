@@ -1,6 +1,5 @@
 from flask import render_template, url_for, request
-from ezzBuy.BusinessLayer import tapaz_displayer
-from ezzBuy.BusinessLayer import amazon_displayer
+from ezzBuy.BusinessLayer import tapaz_displayer, amazon_displayer, aliexpress_displayer
 from ezzBuy import app
 
 
@@ -22,6 +21,8 @@ def home():
             amazon_products = amazon_displayer.display(item, sort, currency, min_price, max_price)
         if tapaz == ['on']:
             tapaz_products = tapaz_displayer.display(item, sort, currency, min_price, max_price)
+        if aliexpress == ['on']:
+            aliexpress_products = aliexpress_displayer.display(item, sort, currency, min_price, max_price)
         return render_template('index.html', amazon_products=amazon_products, tapaz_products=tapaz_products, aliexpress_products=aliexpress_products)
     else:
         return render_template('index.html', amazon_products=amazon_products, tapaz_products=tapaz_products, aliexpress_products=aliexpress_products)

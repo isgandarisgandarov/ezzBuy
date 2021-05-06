@@ -1,13 +1,12 @@
 from ezzBuy.BusinessLayer.scraper import Scraper
 from ezzBuy.BusinessLayer.driver import Driver
+from ezzBuy.BusinessLayer.config_parser import config
 from bs4 import BeautifulSoup
-
-amazon_driver = Driver(True)
 
 
 class AmazonScraper(Scraper):
-    def __init__(self):
-        self.driver = amazon_driver.get_driver()
+    def __init__(self, driver: Driver):
+        self.driver = driver.get_driver()
 
     @staticmethod
     def get_url(product):
@@ -40,7 +39,8 @@ class AmazonScraper(Scraper):
                 'price': price,
                 'rating': rating,
                 'link': link,
-                'source': 'amazon.com'}
+                'source': 'amazon.com',
+                'currency': 'USD'}
 
     def scrape(self, product):
         products = []
@@ -55,10 +55,10 @@ class AmazonScraper(Scraper):
                 record = self.scrapeItem(item)
                 if record['price'] == 0:
                     continue
-                elif len(products) > 10:
+                elif len(products) >= int(config.get_property('SEARCH_NUMBER_AMAZON')):
                     break
                 else:
                     products.append(record)
-            if len(products) > 10:
+            if len(products) >= int(config.get_property('SEARCH_NUMBER_AMAZON')):
                 break
         return products

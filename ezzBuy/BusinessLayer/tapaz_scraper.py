@@ -1,13 +1,12 @@
 from ezzBuy.BusinessLayer.scraper import Scraper
 from ezzBuy.BusinessLayer.driver import Driver
+from ezzBuy.BusinessLayer.config_parser import config
 from bs4 import BeautifulSoup
-
-tapaz_driver = Driver(True)
 
 
 class TapazScraper(Scraper):
-    def __init__(self):
-        self.driver = tapaz_driver.get_driver()
+    def __init__(self, driver: Driver):
+        self.driver = driver.get_driver()
 
     @staticmethod
     def scrapeItem(item):
@@ -28,7 +27,8 @@ class TapazScraper(Scraper):
         return {'title': title,
                 'price': price,
                 'link': link,
-                'source': 'tap.az'}
+                'source': 'tap.az',
+                'currency': 'AZN'}
 
     def scrape(self, product):
         url = f'https://tap.az/elanlar?utf8=%E2%9C%93&log=true&keywords={product}&q%5Bregion_id%5D='
@@ -40,7 +40,7 @@ class TapazScraper(Scraper):
         products = []
         counter = 0
         for item in results:
-            if counter >= 20:
+            if counter >= int(config.get_property('SEARCH_NUMBER_TAPAZ')):
                 break
             record = self.scrapeItem(item)
             if record:

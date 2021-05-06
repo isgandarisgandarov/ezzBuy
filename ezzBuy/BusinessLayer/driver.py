@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from ezzBuy.BusinessLayer.config_parser import config
 
 
 class Driver:
@@ -8,7 +9,7 @@ class Driver:
         self.options = Options()
         self.options.headless = self.headless
         self.options.add_argument("--disable-infobars")
-        self.driver = webdriver.Chrome(executable_path='C:\\Webdriver\\bin\\chromedriver.exe', options=self.options)
+        self.driver = webdriver.Chrome(executable_path=config.get_property("PATH"), options=self.options)
 
     def get_driver(self):
         return self.driver
