@@ -1,6 +1,6 @@
 {
 	"PATH": "C:\\Webdriver\\bin\\chromedriver.exe",
-	"SEARCH_NUMBER_AMAZON": "5",
+	"SEARCH_NUMBER_AMAZON": "20",
 	"SEARCH_NUMBER_TAPAZ": "20",
 	"SEARCH_NUMBER_ALIEXPRESS": "20"
 }
