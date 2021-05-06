@@ -19,7 +19,7 @@
 #### For Linux:
 `pip3 install -r requirements.txt`
 ### 4) Adding the path of chrome driver to the config.json file (You can also change the number of search programs here):
-#### If you don't have chrome driver, you can download it from <a href='https://chromedriver.chromium.org/downloads' target="_blank">here</a>
+#### If you don't have chrome driver, you can download it from <a href='https://chromedriver.chromium.org/downloads' target="_blank">here</a>. Be sure to download compatible version with your browser.
 
 ### 5) Run the application:
 #### For Windows(Powershell):
