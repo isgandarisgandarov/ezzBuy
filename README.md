@@ -30,5 +30,5 @@
 
 
 
-### P.S: You should have Chrome downloaded in order to use this engine
+### P.S: You should have Chrome browser downloaded in order to use this engine
 
