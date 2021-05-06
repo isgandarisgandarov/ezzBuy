@@ -5,7 +5,7 @@ from ezzBuy.BusinessLayer.config_parser import config
 
 class AliexpressScraper(Scraper):
     @staticmethod
-    def scrapeItem(item):
+    def scrape_item(item):
         title = item['product_title']
         price = item['app_sale_price']
         link = item['product_detail_url']
@@ -45,7 +45,7 @@ class AliexpressScraper(Scraper):
         for item in items:
             if counter >= int(config.get_property('SEARCH_NUMBER_ALIEXPRESS')):
                 break
-            record = self.scrapeItem(item)
+            record = self.scrape_item(item)
             if record:
                 products.append(record)
                 counter += 1

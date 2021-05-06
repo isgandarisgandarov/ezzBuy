@@ -1,0 +1,1 @@
+![Alt text](./static/uml.png?raw=true "UML Class Diagram")

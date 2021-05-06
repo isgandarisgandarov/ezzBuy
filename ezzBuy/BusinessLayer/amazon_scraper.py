@@ -17,7 +17,7 @@ class AmazonScraper(Scraper):
         return url
 
     @staticmethod
-    def scrapeItem(item):
+    def scrape_item(item):
         try:
             atag = item.h2.a
             title = atag.text.strip()
@@ -52,7 +52,7 @@ class AmazonScraper(Scraper):
             results = soup.find_all('div', {'data-component-type': 's-search-result'})
 
             for item in results:
-                record = self.scrapeItem(item)
+                record = self.scrape_item(item)
                 if record['price'] == 0:
                     continue
                 elif len(products) >= int(config.get_property('SEARCH_NUMBER_AMAZON')):

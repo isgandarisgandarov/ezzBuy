@@ -9,7 +9,7 @@ class TapazScraper(Scraper):
         self.driver = driver.get_driver()
 
     @staticmethod
-    def scrapeItem(item):
+    def scrape_item(item):
         try:
             link = 'https://tap.az' + item.a.get('href')[:-9]
         except AttributeError:
@@ -42,7 +42,7 @@ class TapazScraper(Scraper):
         for item in results:
             if counter >= int(config.get_property('SEARCH_NUMBER_TAPAZ')):
                 break
-            record = self.scrapeItem(item)
+            record = self.scrape_item(item)
             if record:
                 products.append(record)
             counter += 1
